@@ -1,0 +1,28 @@
+{
+  "name": "v-eight",
+  "version": "2.1.6",
+  "main": "lib/index.js",
+  "scripts": {
+    "configure": "./node_modules/node-gyp/bin/node-gyp.js configure",
+    "build": "./node_modules/node-gyp/bin/node-gyp.js configure build",
+    "build-debug": "./node_modules/node-gyp/bin/node-gyp.js --debug configure build",
+    "rebuild": "./node_modules/node-gyp/bin/node-gyp.js configure rebuild",
+    "clean": "rm -rf dist build",
+    "install": "node-pre-gyp install --fallback-to-build"
+  },
+  "license": "BSD",
+  "devDependencies": {
+    "aws-sdk": "^2.49.0"
+  },
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "nan": "^2.14.0",
+    "node-gyp": "^6.1.0",
+    "node-pre-gyp": "^0.14.0"
+  },
+  "binary": {
+    "module_name": "v-eight",
+    "module_path": "./build/Release/",
+    "host": "https://devnullprod.s3.amazonaws.com/v-eight/"
+  }
+}
