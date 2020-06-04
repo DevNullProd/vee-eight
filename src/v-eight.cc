@@ -170,6 +170,8 @@ v8::MaybeLocal<v8::Value> VEight::Execute(const char *code) {
   return maybe_result;
 }
 
+// TODO 'safe_execute' method, same as execute but do not throw error
+
 void VEight::Terminate() {
   timed_out_ = true;
   isolate_->TerminateExecution();
