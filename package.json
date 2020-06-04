@@ -8,7 +8,8 @@
     "build-debug": "./node_modules/node-gyp/bin/node-gyp.js --debug configure build",
     "rebuild": "./node_modules/node-gyp/bin/node-gyp.js configure rebuild",
     "clean": "rm -rf dist build",
-    "install": "node-pre-gyp install --fallback-to-build"
+    "install": "node-pre-gyp install --fallback-to-build",
+    "test": "jest"
   },
   "license": "BSD",
   "devDependencies": {
@@ -16,6 +17,7 @@
   },
   "dependencies": {
     "bindings": "^1.5.0",
+    "jest": "^26.0.1",
     "nan": "^2.14.0",
     "node-gyp": "^6.1.0",
     "node-pre-gyp": "^0.14.0"
