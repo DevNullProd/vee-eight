@@ -1,10 +1,10 @@
 {
   "targets": [
     {
-      "target_name": "v-eight",
+      "target_name": "vee-eight",
       "sources": [
         "src/addon.cc",
-        "src/v-eight.cc"
+        "src/vee-eight.cc"
       ],
       "include_dirs": [
         "<!(node -e \"require('nan')\")"

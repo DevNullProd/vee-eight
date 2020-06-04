@@ -1,4 +1,4 @@
-# v-eight
+# vee-eight
 
 Safely execute arbitrary untrusted JavaScript from nodejs. This module implements a lightweight isolated JavaScript environment that can be used to run any code without being able to escape the sandbox. The V8 context is initialized and executed entirely from C++ so it's impossible for the JS stack frames to lead back to the nodejs environment. It's usable from a nodejs process, but the JS environment is pure V8.
 
@@ -7,21 +7,21 @@ See **example.js** for usage
 ## Installation
 
 ```
-npm install v-eight
+npm install vee-eight
 ```
 
 Once installed, import it into your module via:
 
 ```javascript
-const VEight = require('v-eight').VEight
+const VeeEight = require('vee-eight').VeeEight
 ```
 
 ## API
 
-Initialize a new **VEight** instance:
+Initialize a new **VeeEight** instance:
 
 ```javascript
-const v8 = new VEight()
+const v8 = new VeeEight()
 ```
 
 Use **execute(code)** to run the specified code block:
@@ -57,4 +57,4 @@ v8.execute("while(true){}")
 
 ## License
 
-v-eight is licensed under **The MIT License**
+vee-eight is licensed under **The MIT License**

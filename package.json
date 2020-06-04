@@ -1,5 +1,5 @@
 {
-  "name": "v-eight",
+  "name": "vee-eight",
   "version": "0.0.1",
   "main": "lib/index.js",
   "scripts": {
@@ -23,8 +23,8 @@
     "node-pre-gyp": "^0.14.0"
   },
   "binary": {
-    "module_name": "v-eight",
+    "module_name": "vee-eight",
     "module_path": "./build/Release/",
-    "host": "https://devnullprod.s3.amazonaws.com/v-eight/"
+    "host": "https://devnullprod.s3.amazonaws.com/vee-eight/"
   }
 }

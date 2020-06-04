@@ -1,41 +1,41 @@
-#include "v-eight.h"
+#include "vee-eight.h"
 #include "common.h"
 
 const std::chrono::milliseconds TERMINATE_DELAY(100);
 
-void terminate_loop(VEight& vEight){
-  while(!vEight.shutdown()){
-    if(vEight.timeout().count() > 0 && vEight.executing()){
+void terminate_loop(VeeEight& veeEight){
+  while(!veeEight.shutdown()){
+    if(veeEight.timeout().count() > 0 && veeEight.executing()){
       auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(
-          std::chrono::system_clock::now() - vEight.execution_started()
+          std::chrono::system_clock::now() - veeEight.execution_started()
       );
 
-      if(elapsed > vEight.timeout())
-        vEight.Terminate();
+      if(elapsed > veeEight.timeout())
+        veeEight.Terminate();
     }
     std::this_thread::sleep_for(TERMINATE_DELAY);
   }
 }
 
-Nan::Persistent<v8::Function> VEight::constructor_;
+Nan::Persistent<v8::Function> VeeEight::constructor_;
 
-bool VEight::shutdown() const{
+bool VeeEight::shutdown() const{
   return shutdown_;
 }
 
-bool VEight::executing() const{
+bool VeeEight::executing() const{
   return executing_;
 }
 
-std::chrono::milliseconds VEight::timeout() const{
+std::chrono::milliseconds VeeEight::timeout() const{
   return timeout_;
 }
 
-std::chrono::system_clock::time_point VEight::execution_started() const{
+std::chrono::system_clock::time_point VeeEight::execution_started() const{
   return execution_started_;
 }
 
-VEight::VEight() :
+VeeEight::VeeEight() :
   shutdown_(false),
   executing_(false),
   timed_out_(false),
@@ -44,15 +44,15 @@ VEight::VEight() :
 
 }
 
-VEight::~VEight(){
+VeeEight::~VeeEight(){
   shutdown_ = true;
   terminate_thread_.join();
 }
 
-void VEight::Init(v8::Local<v8::Object> exports) {
+void VeeEight::Init(v8::Local<v8::Object> exports) {
   v8::Local<v8::FunctionTemplate> tpl = Nan::New<v8::FunctionTemplate>(New);
 
-  tpl->SetClassName(Nan::New("VEight").ToLocalChecked());
+  tpl->SetClassName(Nan::New("VeeEight").ToLocalChecked());
   tpl->InstanceTemplate()->SetInternalFieldCount(1);
 
   Nan::SetPrototypeMethod(tpl, "timeout", Timeout);
@@ -62,12 +62,12 @@ void VEight::Init(v8::Local<v8::Object> exports) {
   auto function = Nan::GetFunction(tpl).ToLocalChecked();
   constructor_.Reset(function);
 
-  Nan::Set(exports, Nan::New("VEight").ToLocalChecked(), function);
+  Nan::Set(exports, Nan::New("VeeEight").ToLocalChecked(), function);
 }
 
-NAN_METHOD(VEight::New) {
+NAN_METHOD(VeeEight::New) {
   if (info.IsConstructCall()) {
-    VEight *obj = new VEight();
+    VeeEight *obj = new VeeEight();
     obj->Wrap(info.This());
     obj->Initialize();
     info.GetReturnValue().Set(info.This());
@@ -80,26 +80,26 @@ NAN_METHOD(VEight::New) {
   }
 }
 
-NAN_METHOD(VEight::Timeout) {
+NAN_METHOD(VeeEight::Timeout) {
   NODE_ARG_INTEGER(0, "timeout");
 
-  VEight* v_eight = ObjectWrap::Unwrap<VEight>(info.Holder());
+  VeeEight* v_eight = ObjectWrap::Unwrap<VeeEight>(info.Holder());
 
   v_eight->timeout_ = std::chrono::duration<uint32_t, std::milli>(Nan::To<uint32_t>(info[0]).FromJust());
 }
 
-NAN_METHOD(VEight::Reset) {
-  VEight* v_eight = ObjectWrap::Unwrap<VEight>(info.Holder());
+NAN_METHOD(VeeEight::Reset) {
+  VeeEight* v_eight = ObjectWrap::Unwrap<VeeEight>(info.Holder());
 
   v_eight->Reset();
 }
 
-NAN_METHOD(VEight::Execute) {
+NAN_METHOD(VeeEight::Execute) {
   NODE_ARG_STRING(0, "code");
 
   Nan::Utf8String code(info[0]);
 
-  VEight* v_eight = ObjectWrap::Unwrap<VEight>(info.Holder());
+  VeeEight* v_eight = ObjectWrap::Unwrap<VeeEight>(info.Holder());
 
   v8::MaybeLocal<v8::Value> result = v_eight->Execute(*code);
 
@@ -107,7 +107,7 @@ NAN_METHOD(VEight::Execute) {
     info.GetReturnValue().Set(result.ToLocalChecked());
 }
 
-void VEight::Initialize() {
+void VeeEight::Initialize() {
   isolate_ = v8::Isolate::GetCurrent();
   global_context_.Reset(v8::Context::New(isolate_));
 
@@ -122,11 +122,11 @@ void VEight::Initialize() {
   Nan::Set(global, Nan::New("global").ToLocalChecked(), context->Global());
 }
 
-void VEight::Reset() {
+void VeeEight::Reset() {
   global_context_.Reset(v8::Context::New(isolate_));
 }
 
-v8::MaybeLocal<v8::Value> VEight::Execute(const char *code) {
+v8::MaybeLocal<v8::Value> VeeEight::Execute(const char *code) {
   // TODO 'always_reset' flag, invoke Reset() here if set
 
   auto context = Nan::New(global_context_);
@@ -164,7 +164,7 @@ v8::MaybeLocal<v8::Value> VEight::Execute(const char *code) {
 
 // TODO 'safe_execute' method, same as execute but do not throw error
 
-void VEight::Terminate() {
+void VeeEight::Terminate() {
   timed_out_ = true;
   isolate_->TerminateExecution();
 }

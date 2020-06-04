@@ -6,7 +6,7 @@
 
 #include <nan.h>
 
-class VEight : public Nan::ObjectWrap {
+class VeeEight : public Nan::ObjectWrap {
 public:
   static void Init(v8::Local<v8::Object> exports);
 
@@ -21,9 +21,9 @@ public:
   void Terminate();
 
 private:
-  explicit VEight();
+  explicit VeeEight();
 
-  ~VEight();
+  ~VeeEight();
 
   static NAN_METHOD(New);
 

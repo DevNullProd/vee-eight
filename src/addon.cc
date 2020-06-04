@@ -1,7 +1,7 @@
-#include "v-eight.h"
+#include "vee-eight.h"
 
 NAN_MODULE_INIT(Init) {
-  VEight::Init(target);
+  VeeEight::Init(target);
 }
 
-NODE_MODULE(VEight, Init)
+NODE_MODULE(VeeEight, Init)

@@ -1,10 +1,10 @@
-const VEight = require('../lib/index').VEight
+const VeeEight = require('../lib/index').VeeEight
 
 describe("#timeout", () => {
   var v8
 
   beforeEach(() => {
-    v8 = new VEight()
+    v8 = new VeeEight()
   })
 
   it("terminates long running code", () => {

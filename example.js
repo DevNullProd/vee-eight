@@ -1,5 +1,5 @@
-const VEight = require('./lib/index').VEight
-const v8 = new VEight()
+const VeeEight = require('./lib/index').VeeEight
+const v8 = new VeeEight()
 
 // Primitive types:
 
