@@ -27,8 +27,6 @@ private:
 
   static NAN_METHOD(New);
 
-  static NAN_METHOD(Initialize);
-
   static NAN_METHOD(Timeout);
 
   static NAN_METHOD(Reset);

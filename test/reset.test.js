@@ -5,7 +5,6 @@ describe("#reset", () => {
 
   beforeEach(() => {
     v8 = new VEight()
-    v8.initialize()
   })
 
   it("resets javascript context", () => {

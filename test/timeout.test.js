@@ -5,7 +5,6 @@ describe("#timeout", () => {
 
   beforeEach(() => {
     v8 = new VEight()
-    v8.initialize()
   })
 
   it("terminates long running code", () => {

@@ -55,7 +55,6 @@ void VEight::Init(v8::Local<v8::Object> exports) {
   tpl->SetClassName(Nan::New("VEight").ToLocalChecked());
   tpl->InstanceTemplate()->SetInternalFieldCount(1);
 
-  Nan::SetPrototypeMethod(tpl, "initialize", Initialize);
   Nan::SetPrototypeMethod(tpl, "timeout", Timeout);
   Nan::SetPrototypeMethod(tpl, "reset", Reset);
   Nan::SetPrototypeMethod(tpl, "execute", Execute);
@@ -70,6 +69,7 @@ NAN_METHOD(VEight::New) {
   if (info.IsConstructCall()) {
     VEight *obj = new VEight();
     obj->Wrap(info.This());
+    obj->Initialize();
     info.GetReturnValue().Set(info.This());
 
   } else {
@@ -78,14 +78,6 @@ NAN_METHOD(VEight::New) {
     v8::Local<v8::Function> cons = Nan::New<v8::Function>(constructor_);
     info.GetReturnValue().Set(Nan::NewInstance(cons, argc, argv).ToLocalChecked());
   }
-}
-
-NAN_METHOD(VEight::Initialize) {
-  VEight* v_eight = ObjectWrap::Unwrap<VEight>(info.Holder());
-
-  v_eight->Initialize();
-
-  info.GetReturnValue().Set(info.This());
 }
 
 NAN_METHOD(VEight::Timeout) {

@@ -5,7 +5,6 @@ describe("#execute", () => {
 
   beforeEach(() => {
     v8 = new VEight()
-    v8.initialize()
   })
 
   it("executes javascript code and returns the result", () => {
