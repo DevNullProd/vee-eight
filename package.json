@@ -1,6 +1,6 @@
 {
   "name": "v-eight",
-  "version": "2.1.6",
+  "version": "0.0.1",
   "main": "lib/index.js",
   "scripts": {
     "configure": "./node_modules/node-gyp/bin/node-gyp.js configure",
@@ -11,7 +11,7 @@
     "install": "node-pre-gyp install --fallback-to-build",
     "test": "jest"
   },
-  "license": "BSD",
+  "license": "MIT",
   "devDependencies": {
     "aws-sdk": "^2.49.0"
   },
